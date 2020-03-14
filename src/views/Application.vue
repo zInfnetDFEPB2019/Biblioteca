@@ -2,7 +2,7 @@
   <div>
     <HeaderApplication />
     <ContentApplication />
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 <script>

@@ -16,10 +16,10 @@
     <span to="/" class="ml-3 font-weight-black title">BiblioTech</span>
     <v-spacer></v-spacer>
     <v-btn to="/login" class="ml-4">
-      <v-icon class="mr-2">mdi-login</v-icon>Login
+      <v-icon class="mr-4">mdi-login</v-icon>Login
     </v-btn>
     <v-btn to="/signup" class="ml-4">
-      <v-icon class="mr-2">mdi-account-plus</v-icon>Cadastrar-se
+      <v-icon class="mr-4">mdi-settings</v-icon>Cadastrar-se
     </v-btn>
   </v-toolbar>
 </template>

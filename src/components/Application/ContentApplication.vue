@@ -10,21 +10,30 @@
     </v-tabs>
     <v-tabs-items v-model="tabs">
       <v-tab-item>
-        <Read />
+        <portal-target v-if="this.$route.name == 'read'" name="destination"></portal-target>
+        {{ this.$route.name }}
+        <!-- <Read /> -->
       </v-tab-item>
       <v-tab-item>
-        <WantRead />
+        <portal-target v-if="this.$route.name == 'reading'" name="destination"></portal-target>
+        {{ this.$route.name }}
+        <!-- <WantRead /> -->
       </v-tab-item>
       <v-tab-item>
-        <Reading />
+        <portal-target v-if="this.$route.name == 'wantread'" name="destination"></portal-target>
+        {{ this.$route.name }}
+        <!-- <Reading /> -->
       </v-tab-item>
     </v-tabs-items>
+    <portal to="destination">
+      <router-view></router-view>
+    </portal>
   </div>
 </template>
 <script>
-import Read from "../../views/Read";
-import WantRead from "../../views/WantRead";
-import Reading from "../../views/Reading";
+// import Read from "../../views/Read";
+// import WantRead from "../../views/WantRead";
+// import Reading from "../../views/Reading";
 
 export default {
   name: "ContentApplication",
@@ -32,16 +41,16 @@ export default {
     tabs: 1,
     titulos: ["Já li", "Estou Lendo", "Quero Ler"]
   }),
-  components: {
-    Read,
-    WantRead,
-    Reading
-  },
+  // components: {
+  //   Read,
+  //   WantRead,
+  //   Reading
+  // },
   methods: {
     changeRoute(index) {
       switch (index) {
         case 0:
-          this.$router.push("read");
+          this.$router.push({name: "read"});
           break;
         case 1:
           this.$router.push("reading");
