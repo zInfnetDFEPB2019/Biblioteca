@@ -4,13 +4,18 @@
     <v-btn to="/app/configs" class="ml-4 height-48px">
       <v-icon>settings</v-icon>
     </v-btn>
-    <v-btn to="/" class="ml-4 height-48px">
+    <v-btn class="ml-4 height-48px" @click="logout">
       <v-icon>exit_to_app</v-icon>
     </v-btn>
   </v-toolbar>
 </template>
 <script>
 export default {
-  name: "HeaderApplication"
+  name: "HeaderApplication",
+  methods:{
+    logout(){
+      this.$store.dispatch("auth/logout", null, {root: true})
+    }
+  }
 };
 </script>

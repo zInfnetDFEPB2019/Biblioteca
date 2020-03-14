@@ -1,5 +1,5 @@
-// import * as firebase from "firebase";
-// import router from '../../../../router/index'
+import * as firebase from "firebase";
+import router from '../../../../router/index'
 
 const state = {
     user: {
@@ -12,34 +12,39 @@ const getters = {
 }
 
 const mutations = {
-    // updateUserInfo(state, user) {
-    //     if (user) {
-    //         state.user.email = user.email
-    //         state.user.id = user.uid
-    //     } else {
-    //         state.user.email = null
-    //         state.user.id = null
-    //     }
-    // },
+    updateUserInfo(state, user) {
+        if (user) {
+            state.user.email = user.email
+            state.user.id = user.uid
+        } else {
+            state.user.email = null
+            state.user.id = null
+        }
+    },
 }
 
 const actions = {
-    // login({ commit }, { email, password }) {
-    //     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-    //         router.push("dashboard").catch(() => { })
-    //     }).catch(error => {
-    //         let errorMessage = loginErrorInternalization(error)
-    //         preset.ModalLoginError.message = errorMessage
-    //         commit("ui/genericModal", { typeModal: "modalOneOption", attributes: preset.ModalLoginError }, { root: true });
-    //     })
-    // },
-    // logout() {
-    //     firebase.auth().signOut().then(() => {
-    //         router.push("/").catch(() => { })
-    //     }).catch(error => {
-    //         console.log(error) // eslint-disable-line
-    //     })
-    // },
+    login({ commit }, { email, password }) {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            router.push("app/").then(() => { commit("ui/closeSnackbar", null, { root: true }) }).catch(() => { })
+        }).catch(error => {
+            let errorMessage = loginErrorInternalization(error)
+            let snackbarProperties = {
+                color: "red",
+                text: errorMessage,
+                timeout: 0,
+                top: true,
+            }
+            commit("ui/openSnackbar", snackbarProperties, { root: true });
+        })
+    },
+    logout() {
+        firebase.auth().signOut().then(() => {
+            router.push("/").catch(() => { })
+        }).catch(error => {
+            console.log(error) // eslint-disable-line
+        })
+    },
     // verifyIfUserIsLogged({ dispatch, commit }) {
     //     firebase.auth().onAuthStateChanged(user => {
     //         commit("updateUserInfo", user)
@@ -47,6 +52,19 @@ const actions = {
     //         dispatch("firestore/watchData", "cuidadoras", { root: true })
     //     })
     // }
+}
+
+function loginErrorInternalization(error) {
+    switch (error.code) {
+        case "auth/too-many-requests":
+            return "Muitas tentativas de login, tente novamente mais tarde."
+        case "auth/wrong-password":
+            return "Senha inválida."
+        case "auth/user-not-found":
+            return "Usuário não encontrado."
+        default:
+            break;
+    }
 }
 
 export default {
