@@ -15,7 +15,7 @@
           </v-text-field>
         </div>
         <div @mouseover="hoverConfirm = true" @mouseleave="hoverConfirm = false">
-          <v-text-field label="Confirmar Senha" :rules="passwordRule" :type="showConfirm ? 'text' : 'password'" v-model.lazy="passwordConfirmation" required solo>
+          <v-text-field label="Confirmar Senha" :rules="passwordRules" :type="showConfirm ? 'text' : 'password'" v-model.lazy="passwordConfirmation" required solo>
           <template slot="append">
             <v-icon v-if="hoverConfirm" @click="showConfirm = !showConfirm">{{ showConfirm ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
             <v-icon>lock</v-icon>
@@ -27,8 +27,9 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
+import rules from '../rules/rules'
+
 export default {
   data: () => ({
     email: '',
@@ -38,17 +39,8 @@ export default {
     hoverConfirm: false,
     show: false,
     showConfirm: false,
-    emailRules: [
-      v => !!v || 'E-mail é requerido',
-      v => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(v) || 'E-mail precisa ser válido'
-      }
-    ],
-    passwordRule: [
-      v => !!v || 'Senha é requerido',
-      v => v.length >= 6 || 'Senha precisa ter 6 caracteres'
-    ]
+    emailRules: rules.email,
+    passwordRules: rules.password,
   })
 }
 </script>
