@@ -1,23 +1,59 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+// External-Routes
+import About from '../views/About.vue'
+import Login from '../views/Login.vue'
+import SignUp from '../views/SignUp.vue'
+
+// Internal-Routes
+import Application from '../views/Application.vue'
+import Configuration from '../views/Configuration.vue'
+import WantRead from '../views/WantRead.vue'
+import Read from '../views/Read.vue'
+import Reading from '../views/Reading.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Sobre',
+    component: About
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/app',
+    name: 'Application',
+    component: Application,
+    children: [
+      {
+        path: 'read',
+        component: Read
+      },
+      {
+        path: 'reading',
+        component: Reading
+      },
+      {
+        path: 'wantread',
+        component: WantRead
+      },
+      {
+        path: 'configs',
+        component: Configuration
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({

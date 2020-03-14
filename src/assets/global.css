@@ -1,0 +1,21 @@
+/* overwrite framework */
+
+.v-toolbar__content{
+    height: unset!important;
+    width: 100%;
+    padding: 16px;
+}
+
+/* Implementation */
+
+.heightCompleteViewPortWithCalc80{
+    height: calc(100vh - 80px);
+}
+
+.heightCompleteViewPortWithCalc72{
+    height: calc(100vh - 72px);
+}
+
+.height-48px{
+    height: 48px!important;
+}

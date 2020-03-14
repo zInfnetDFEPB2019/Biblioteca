@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <v-tabs v-model="tabs" grow centered>
+      <v-tab
+        v-for="(titulo, index) in titulos"
+        :key="index"
+        :value="index"
+        @click="changeRoute(index)"
+      >{{ titulo }}</v-tab>
+    </v-tabs>
+    <v-tabs-items v-model="tabs">
+      <v-tab-item>
+        <Read />
+      </v-tab-item>
+      <v-tab-item>
+        <WantRead />
+      </v-tab-item>
+      <v-tab-item>
+        <Reading />
+      </v-tab-item>
+    </v-tabs-items>
+  </div>
+</template>
+<script>
+import Read from "../../views/Read";
+import WantRead from "../../views/WantRead";
+import Reading from "../../views/Reading";
+
+export default {
+  name: "ContentApplication",
+  data: () => ({
+    tabs: 1,
+    titulos: ["Já li", "Estou Lendo", "Quero Ler"]
+  }),
+  components: {
+    Read,
+    WantRead,
+    Reading
+  },
+  methods: {
+    changeRoute(index) {
+      switch (index) {
+        case 0:
+          this.$router.push("read");
+          break;
+        case 1:
+          this.$router.push("reading");
+          break;
+        case 2:
+          this.$router.push("wantread");
+          break;
+      }
+    }
+  },
+  created() {
+    this.$router.push("reading");
+  }
+};
+</script>
