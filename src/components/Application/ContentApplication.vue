@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs v-model="tabs" grow centered>
+    <v-tabs v-model="tabs" background-color="cyan" color="white" slider-color="yellow" grow centered>
       <v-tab
         v-for="(titulo, index) in titulos"
         :key="index"
@@ -11,17 +11,17 @@
     <v-tabs-items v-model="tabs">
       <v-tab-item>
         <portal-target v-if="this.$route.name == 'read'" name="destination"></portal-target>
-        {{ this.$route.name }}
+        <!-- {{ this.$route.name }} -->
         <!-- <Read /> -->
       </v-tab-item>
       <v-tab-item>
         <portal-target v-if="this.$route.name == 'reading'" name="destination"></portal-target>
-        {{ this.$route.name }}
+        <!-- {{ this.$route.name }} -->
         <!-- <WantRead /> -->
       </v-tab-item>
       <v-tab-item>
         <portal-target v-if="this.$route.name == 'wantread'" name="destination"></portal-target>
-        {{ this.$route.name }}
+        <!-- {{ this.$route.name }} -->
         <!-- <Reading /> -->
       </v-tab-item>
     </v-tabs-items>

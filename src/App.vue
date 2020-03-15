@@ -29,3 +29,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+.v-content{
+  background: #E0F7FA!important;
+}
+.v-content__wrap{
+  background: #E0F7FA!important;
+}
+</style>

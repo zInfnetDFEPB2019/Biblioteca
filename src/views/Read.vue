@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card flat style="background:#E0F7FA;">
     <v-card-text>
       <v-card max-width="344">
         <v-list-item>

@@ -34,7 +34,7 @@ const actions = {
                 let snackbarProperties = {
                     color: "red",
                     text: errorMessage,
-                    timeout: 0,
+                    timeout: 2500,
                     top: true,
                 }
                 commit("ui/openSnackbar", snackbarProperties, { root: true });

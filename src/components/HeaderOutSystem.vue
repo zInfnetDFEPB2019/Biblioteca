@@ -1,6 +1,7 @@
 <template>
   <v-toolbar
     v-if="this.$route.path == '/' || this.$route.path == '/login' || this.$route.path == '/signup'"
+    color="cyan"
     style="height:unset;"
     class="d-flex align-center"
   >
@@ -15,10 +16,10 @@
 
     <span to="/" class="ml-3 font-weight-black title">BiblioTech</span>
     <v-spacer></v-spacer>
-    <v-btn to="/login" class="ml-4">
+    <v-btn to="/login" class="ml-4" color="white" outlined>
       <v-icon class="mr-2">mdi-login</v-icon>Login
     </v-btn>
-    <v-btn to="/signup" class="ml-4">
+    <v-btn to="/signup" class="ml-4" color="white" outlined>
       <v-icon class="mr-2">mdi-account-plus</v-icon>Cadastrar-se
     </v-btn>
   </v-toolbar>

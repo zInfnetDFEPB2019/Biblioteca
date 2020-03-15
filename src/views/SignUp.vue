@@ -3,10 +3,14 @@
     <v-row class="d-flex justify-center">
       <v-col cols="4">
         <v-form ref="form">
-          <v-btn class="mb-7" to="/">
+          <v-btn class="mb-7" color="cyan white--text" to="/">
             <v-icon>keyboard_backspace</v-icon>
           </v-btn>
-          <v-text-field append-icon="email" label="Email" :rules="rules.email" v-model="email" required solo></v-text-field>
+          <v-text-field label="Email" :rules="rules.email" v-model="email" required solo>
+            <template slot="append">
+                <v-icon color="cyan">email</v-icon>
+            </template>
+          </v-text-field>
           <div @mouseover="hover = true" @mouseleave="hover = false">
             <v-text-field
               append-icon="lock"
@@ -19,7 +23,7 @@
             >
               <template slot="append">
                 <v-icon v-if="hover" @click="show = !show">{{ show ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
-                <v-icon>lock</v-icon>
+                <v-icon color="cyan">lock</v-icon>
               </template>
             </v-text-field>
           </div>
@@ -37,11 +41,11 @@
                   v-if="hoverConfirm"
                   @click="showConfirm = !showConfirm"
                 >{{ showConfirm ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
-                <v-icon>lock</v-icon>
+                <v-icon color="cyan">lock</v-icon>
               </template>
             </v-text-field>
           </div>
-          <v-btn block class="mb-7" @click="signup(email, password)">Cadastrar-se</v-btn>
+          <v-btn block color="cyan white--text" class="mb-7" @click="signup(email, password)">Cadastrar-se</v-btn>
         </v-form>
       </v-col>
     </v-row>
