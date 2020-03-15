@@ -62,10 +62,10 @@ const actions = {
             })
             .catch(error => {
                 console.log(error) // eslint-disable-line
-                // let errorMessage = signupErrorInternalization(error)
+                let errorMessage = signupErrorInternalization(error)
                 let snackbarProperties = {
                     color: "red",
-                    text: error,
+                    text: errorMessage,
                     timeout: 0,
                     top: true,
                 }
@@ -94,14 +94,20 @@ function loginErrorInternalization(error) {
     }
 }
 
-// function signupErrorInternalization(error) {
-//     switch (error.code) {
-//         case "auth/email-already-in-use":
-//             return "Este e-mail já está em uso tente outro."
-//         default:
-//             break;
-//     }
-// }
+function signupErrorInternalization(error) {
+    switch (error.code) {
+        case "auth/email-already-in-use":
+            return "Este e-mail já está em uso, tente outro."
+        case "auth/invalid-email":
+            return "E-mail inválido."
+        case "auth/operation-not-allowed":
+            return "Operação não permitida."
+        case "auth/weak-password":
+            return "A senha precisa ser mais forte."
+        default:
+            break;
+    }
+}
 
 export default {
     namespaced: true,
