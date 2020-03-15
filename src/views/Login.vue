@@ -7,8 +7,21 @@
             <v-icon>keyboard_backspace</v-icon>
           </v-btn>
           <v-form ref="form">
-            <v-text-field append-icon="email" label="Email" v-model="email" :rules="emailRules" solo></v-text-field>
-            <v-text-field append-icon="lock" type="password" label="Senha" v-model="password" :rules="passwordRules" solo></v-text-field>
+            <v-text-field
+              append-icon="email"
+              label="Email"
+              v-model="email"
+              :rules="rules.email"
+              solo
+            ></v-text-field>
+            <v-text-field
+              append-icon="lock"
+              type="password"
+              label="Senha"
+              v-model="password"
+              :rules="rules.password"
+              solo
+            ></v-text-field>
           </v-form>
           <v-btn block class="mb-7" @click="login(email,password)">Login</v-btn>
         </v-col>
@@ -17,20 +30,22 @@
   </v-app>
 </template>
 <script>
-import rules from '../rules/rules'
+import { rules } from "../rules/rules";
 
 export default {
   data() {
     return {
       email: "",
       password: "",
-      emailRules: rules.email,
-      passwordRules: rules.password,
+      rules: {
+        email: rules.email,
+        password: rules.password
+      }
     };
   },
   methods: {
     login(email, password) {
-      if(this.$refs.form.validate()){
+      if (this.$refs.form.validate()) {
         this.$store.dispatch("auth/login", { email, password }, { root: true });
       }
     }
