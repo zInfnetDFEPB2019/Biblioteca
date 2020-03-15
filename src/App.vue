@@ -12,13 +12,20 @@
 import HeaderOutSystem from "./components/HeaderOutSystem";
 import Snackbar from "./components/Snackbar";
 
+import router from "./router/index";
+
 export default {
   name: "App",
-
   components: { HeaderOutSystem, Snackbar },
-
   data: () => ({
     //
-  })
+  }),
+  created() {
+    //Close snackbar after change route to any
+    router.beforeEach((to, from, next) => {
+      this.$store.commit("ui/closeSnackbar");
+      next();
+    });
+  }
 };
 </script>

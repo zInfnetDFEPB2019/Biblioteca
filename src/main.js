@@ -21,5 +21,5 @@ new Vue({
   beforeCreate(){
     firebase.initializeApp(SDK)
     firebase.analytics();
-  }
+  },
 }).$mount('#app')
