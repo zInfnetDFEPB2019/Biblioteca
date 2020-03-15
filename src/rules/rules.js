@@ -11,10 +11,11 @@ const genericRules = {
 
 const rules = {
   email: [genericRules.required("E-mail é um campo requerido."), genericRules.email],
-  password: [genericRules.required("Senha é um campo requerido."), genericRules.sixCharactersOrPlus("A senha precisa ter 6 ou mais caracteres.")]
+  password: [genericRules.required("Senha é um campo requerido."), genericRules.sixCharactersOrPlus("A senha precisa ter 6 ou mais caracteres.")],
 }
 
 export {
+  patterns,
   genericRules,
   rules
 } 

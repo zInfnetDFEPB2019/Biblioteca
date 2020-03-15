@@ -25,26 +25,53 @@ const mutations = {
 
 const actions = {
     login({ commit }, { email, password }) {
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-            router.push("app/").then(() => { commit("ui/closeSnackbar", null, { root: true }) }).catch(() => { })
-        }).catch(error => {
-            let errorMessage = loginErrorInternalization(error)
-            let snackbarProperties = {
-                color: "red",
-                text: errorMessage,
-                timeout: 0,
-                top: true,
-            }
-            commit("ui/openSnackbar", snackbarProperties, { root: true });
-        })
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                router.push("app/").then(() => { commit("ui/closeSnackbar", null, { root: true }) }).catch(() => { })
+            })
+            .catch(error => {
+                let errorMessage = loginErrorInternalization(error)
+                let snackbarProperties = {
+                    color: "red",
+                    text: errorMessage,
+                    timeout: 0,
+                    top: true,
+                }
+                commit("ui/openSnackbar", snackbarProperties, { root: true });
+            })
     },
     logout() {
-        firebase.auth().signOut().then(() => {
-            router.push("/").catch(() => { })
-        }).catch(error => {
-            console.log(error) // eslint-disable-line
-        })
+        firebase.auth().signOut()
+            .then(() => {
+                router.push("/").catch(() => { })
+            })
+            .catch(error => {
+                console.log(error) // eslint-disable-line
+            })
     },
+    signup({ commit }, { email, password }) {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                let snackbarProperties = {
+                    color: "green",
+                    text: "Cadastro realizado com sucesso!",
+                    timeout: 2500,
+                    top: true,
+                }
+                commit("ui/openSnackbar", snackbarProperties, { root: true })
+            })
+            .catch(error => {
+                console.log(error) // eslint-disable-line
+                // let errorMessage = signupErrorInternalization(error)
+                let snackbarProperties = {
+                    color: "red",
+                    text: error,
+                    timeout: 0,
+                    top: true,
+                }
+                commit("ui/openSnackbar", snackbarProperties, { root: true })
+            });
+    }
     // verifyIfUserIsLogged({ dispatch, commit }) {
     //     firebase.auth().onAuthStateChanged(user => {
     //         commit("updateUserInfo", user)
@@ -66,6 +93,15 @@ function loginErrorInternalization(error) {
             break;
     }
 }
+
+// function signupErrorInternalization(error) {
+//     switch (error.code) {
+//         case "auth/email-already-in-use":
+//             return "Este e-mail já está em uso tente outro."
+//         default:
+//             break;
+//     }
+// }
 
 export default {
     namespaced: true,
