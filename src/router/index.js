@@ -53,6 +53,7 @@ const routes = [
       },
       {
         path: 'configs',
+        name: 'configuration',
         component: Configuration
       },
     ]
