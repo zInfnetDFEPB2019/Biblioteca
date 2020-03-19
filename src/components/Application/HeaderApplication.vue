@@ -17,15 +17,17 @@
     <v-btn class="ml-4 height-48px" color="white" @click="logout">
       <v-icon color="cyan">exit_to_app</v-icon>
     </v-btn>
+    <ModalSearch/>
   </v-toolbar>
 </template>
 <script>
 import InputSearch from "./Search/InputSearch";
+import ModalSearch from "./Search/ModalSearch";
 
 export default {
   name: "HeaderApplication",
   components: {
-    InputSearch
+    InputSearch, ModalSearch,
   },
   data() {
     return {};
