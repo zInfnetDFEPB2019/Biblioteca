@@ -7,19 +7,18 @@
     </v-text-field> -->
     <v-autocomplete
       v-model="model"
-      :items="items"
+      :items="entries"
       :loading="isLoading"
       :search-input.sync="search"
       hide-details="true"
       color="white"
       hide-no-data
       hide-selected
-      item-text="Description"
-      item-value="API"
+      item-text="volumeInfo.title"
+      item-value="volumeInfo.description"
       label="Public APIs"
       placeholder="Pesquise um livro"
       return-object
-      clearable="true"
       solo
     >
       <template slot="prepend-inner">
@@ -57,55 +56,31 @@ export default {
       entries: [],
       isLoading: false,
       model: null,
-      search: null
-    };
-  },
-  computed: {
-    fields() {
-      if (!this.model) return [];
-
-      return Object.keys(this.model).map(key => {
-        return {
-          key,
-          value: this.model[key] || "n/a"
-        };
-      });
+      search: null,
+    }},
+    computed: {
     },
-    items() {
-      return this.entries.map(entry => {
-        const Description =
-          entry.Description.length > this.descriptionLimit
-            ? entry.Description.slice(0, this.descriptionLimit) + "..."
-            : entry.Description;
+    watch: {
+      search (val) { //eslint-disable-line
 
-        return Object.assign({}, entry, { Description });
-      });
-    }
-  },
-  watch: {
-    search(val) { // eslint-disable-line
-      // Items have already been loaded
-      if (this.items.length > 0) return;
+        // Items have already been requested
+        if (this.isLoading) return
 
-      // Items have already been requested
-      if (this.isLoading) return;
+        this.isLoading = true
 
-      this.isLoading = true;
-
-      // Lazily load input items
-      fetch("https://api.publicapis.org/entries")
-        .then(res => res.json())
-        .then(res => {
-          const { count, entries } = res;
-          this.count = count;
-          this.entries = entries;
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        .finally(() => (this.isLoading = false));
-    }
-  },
+        // Lazily load input items
+        fetch('https://www.googleapis.com/books/v1/volumes?q='+this.search)
+          .then(res => res.json())
+          .then(res => {
+            this.entries = res.items
+            console.log(this.entries)//eslint-disable-line
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          .finally(() => (this.isLoading = false))
+      },
+    },
   methods: {
     logout() {
       this.$store.dispatch("auth/logout", null, { root: true });
@@ -114,7 +89,7 @@ export default {
 };
 </script>
 <style scoped>
-.v-text-field.v-text-field--enclosed .v-text-field__details {
-  display: none;
+>>>.v-text-field__details{
+  display: none!important;
 }
 </style>
