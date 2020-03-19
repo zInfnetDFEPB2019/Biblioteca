@@ -17,23 +17,30 @@ import router from "./router/index";
 export default {
   name: "App",
   components: { HeaderOutSystem, Snackbar },
+  computed: {
+    SnackbarUI() {
+      return this.$store.state.ui.snackbar;
+    }
+  },
   data: () => ({
     //
   }),
   created() {
-    //Close snackbar after change route to any
+    console.log(this.SnackbarUI.open); // eslint-disable-line
     router.beforeEach((to, from, next) => {
-      this.$store.commit("ui/closeSnackbar");
+      if (this.SnackbarUI.open) {
+        this.$store.commit("ui/closeSnackbar");
+      }
       next();
     });
   }
 };
 </script>
 <style scoped>
-.v-content{
-  background: #E0F7FA!important;
+.v-content {
+  background: #e0f7fa !important;
 }
-.v-content__wrap{
-  background: #E0F7FA!important;
+.v-content__wrap {
+  background: #e0f7fa !important;
 }
 </style>

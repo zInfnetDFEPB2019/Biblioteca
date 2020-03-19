@@ -1,4 +1,7 @@
 const  state = {
+    search: {
+        data: null
+    },
     snackbar: {
         open: false,
         color: "black",
@@ -22,6 +25,12 @@ const  mutations = {
     closeSnackbar(state){
         state.snackbar.open = false
         Object.keys(state.snackbar).forEach(i => state.snackbar[i] = null)
+    },
+    getSearchData(state, object){
+        state.search.data = object;
+    },
+    wipeSearchData(state){
+        state.search.data = null
     }
 }
 
