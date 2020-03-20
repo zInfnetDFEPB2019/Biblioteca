@@ -10,17 +10,17 @@
     </v-tabs>
     <v-tabs-items v-model="tabs">
       <v-tab-item>
-        <portal-target v-if="this.$route.name == 'read' || this.$route.name == 'configuration'" name="destination"></portal-target>
+        <portal-target v-if="this.$route.name == 'read' || this.$route.name == 'configuration'" style="background:#E0F7FA;" class="pa-4" name="destination"></portal-target>
         <!-- {{ this.$route.name }} -->
         <!-- <Read /> -->
       </v-tab-item>
       <v-tab-item>
-        <portal-target v-if="this.$route.name == 'reading' || this.$route.name == 'configuration'" name="destination"></portal-target>
+        <portal-target v-if="this.$route.name == 'reading' || this.$route.name == 'configuration'" style="background:#E0F7FA;" class="pa-4" name="destination"></portal-target>
         <!-- {{ this.$route.name }} -->
         <!-- <WantRead /> -->
       </v-tab-item>
       <v-tab-item>
-        <portal-target v-if="this.$route.name == 'wantread' || this.$route.name == 'configuration'" name="destination"></portal-target>
+        <portal-target v-if="this.$route.name == 'wantread' || this.$route.name == 'configuration'" style="background:#E0F7FA;" class="pa-4" name="destination"></portal-target>
         <!-- {{ this.$route.name }} -->
         <!-- <Reading /> -->
       </v-tab-item>
