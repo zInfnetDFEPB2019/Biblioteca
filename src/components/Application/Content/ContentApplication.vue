@@ -88,3 +88,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+>>> div.v-slide-group__prev.v-slide-group__prev--disabled{
+  display: none !important;
+}
+</style>

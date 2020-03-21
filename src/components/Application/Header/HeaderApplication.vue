@@ -14,20 +14,20 @@
     <!-- <v-btn :to="{name:'configuration'}" color="white" class="ml-4 height-48px">
       <v-icon color="cyan">settings</v-icon>
     </v-btn>-->
-    <v-btn class="ml-4 height-48px" color="white" @click="logout">
-      <v-icon color="cyan">exit_to_app</v-icon>
-    </v-btn>
-    <ModalSearch/>
+    <ButtonExit />
+    <ModalSearch />
   </v-toolbar>
 </template>
 <script>
 import InputSearch from "./Search/InputSearch";
 import ModalSearch from "./Search/ModalSearch";
+import ButtonExit from "../../ButtonExit";
 
 export default {
   name: "HeaderApplication",
   components: {
-    InputSearch, ModalSearch,
+    InputSearch,
+    ModalSearch
   },
   data() {
     return {};
