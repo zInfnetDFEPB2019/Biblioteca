@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import HeaderApplication from "../components/Application/HeaderApplication";
-import ContentApplication from "../components/Application/ContentApplication";
+import HeaderApplication from "../components/Application/Header/HeaderApplication";
+import ContentApplication from "../components/Application/Content/ContentApplication";
 
 export default {
   
