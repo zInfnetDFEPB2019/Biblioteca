@@ -4,14 +4,13 @@
   </v-btn>
 </template>
 <script>
-import router from "./router/index";
 
 export default {
   name: "Snackbar",
   methods: {
     goToRoute() {
       const actualRouteName = this.$route.name;
-      switch (actualRoute) {
+      switch (actualRouteName) {
         case "read":
         case "reading":
         case "wantread":
@@ -28,7 +27,7 @@ export default {
       this.$store.dispatch("auth/logout", null, { root: true });
     },
     moveRoute(integer) {
-      router.go(integer);
+      this.$route.go(integer);
     }
   }
 };

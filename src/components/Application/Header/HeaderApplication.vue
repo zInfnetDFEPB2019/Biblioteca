@@ -27,7 +27,8 @@ export default {
   name: "HeaderApplication",
   components: {
     InputSearch,
-    ModalSearch
+    ModalSearch,
+    ButtonExit
   },
   data() {
     return {};
