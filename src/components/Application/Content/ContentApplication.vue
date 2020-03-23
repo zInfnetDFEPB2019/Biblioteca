@@ -72,7 +72,7 @@ export default {
     changeRoute(index) {
       switch (index) {
         case 0:
-          this.$router.push({ name: "read" });
+          this.$router.push("read");
           break;
         case 1:
           this.$router.push("reading");

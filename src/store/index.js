@@ -1,25 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-//modules
 import ui from './modules/ui/ui'
 import auth from './modules/firebase/auth/auth'
 import firestore from './modules/firebase/firestore/firestore'
+import books from './modules/firebase/firestore/books'
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
     ui,
     auth,
     firestore,
+    books
   }
 })

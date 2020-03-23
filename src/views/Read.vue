@@ -19,6 +19,10 @@ import CardContentApplication from "../components/Application/Content/CardConten
 export default {
   components: {
     CardContentApplication
+  },
+    created() {
+    console.log(this.$route.name + ' teste') //eslint-disable-line
+    this.$store.dispatch("books/getBookData", this.$route.name);
   }
 };
 </script>
