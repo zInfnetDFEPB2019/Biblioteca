@@ -1,87 +1,32 @@
 <template>
   <div>
     <v-tabs
-      v-model="tabs"
       background-color="cyan"
       color="white"
       slider-color="yellow"
       grow
       centered
     >
-      <v-tab
-        v-for="(titulo, index) in titulos"
-        :key="index"
-        :value="index"
-        @click="changeRoute(index)"
-      >{{ titulo }}</v-tab>
+      <v-tab key="0" value="0" :to="tabs[0].route">{{ tabs[0].title }}</v-tab>
+      <v-tab key="1" value="1" :to="tabs[1].route">{{ tabs[1].title }}</v-tab>
+      <v-tab key="2" value="2" :to="tabs[2].route">{{ tabs[2].title }}</v-tab>
     </v-tabs>
-    <v-tabs-items v-model="tabs">
-      <v-tab-item>
-        <portal-target
-          v-if="this.$route.name == 'read' || this.$route.name == 'configuration'"
-          style="background:#E0F7FA;"
-          class="py-2 px-4"
-          name="destination"
-        ></portal-target>
-        <!-- {{ this.$route.name }} -->
-        <!-- <Read /> -->
-      </v-tab-item>
-      <v-tab-item>
-        <portal-target
-          v-if="this.$route.name == 'reading' || this.$route.name == 'configuration'"
-          style="background:#E0F7FA;"
-          class="py-2 px-4"
-          name="destination"
-        ></portal-target>
-        <!-- {{ this.$route.name }} -->
-        <!-- <WantRead /> -->
-      </v-tab-item>
-      <v-tab-item>
-        <portal-target
-          v-if="this.$route.name == 'wantread' || this.$route.name == 'configuration'"
-          style="background:#E0F7FA;"
-          class="py-2 px-4"
-          name="destination"
-        ></portal-target>
-        <!-- {{ this.$route.name }} -->
-        <!-- <Reading /> -->
-      </v-tab-item>
-    </v-tabs-items>
-    <portal to="destination">
-      <router-view></router-view>
-    </portal>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-// import Read from "../../views/Read";
-// import WantRead from "../../views/WantRead";
-// import Reading from "../../views/Reading";
 
 export default {
   name: "ContentApplication",
   data: () => ({
-    tabs: 1,
-    titulos: ["Já li", "Estou Lendo", "Quero Ler"]
+    tabs: [
+      { title: "Já li", route: "readed" },
+      { title: "Estou Lendo", route: "reading" },
+      { title: "Quero Ler", route: "wantread" }
+    ]
   }),
-  // components: {
-  //   Read,
-  //   WantRead,
-  //   Reading
-  // },
   methods: {
-    changeRoute(index) {
-      switch (index) {
-        case 0:
-          this.$router.push("read");
-          break;
-        case 1:
-          this.$router.push("reading");
-          break;
-        case 2:
-          this.$router.push("wantread");
-          break;
-      }
-    }
+
   },
   created() {
     this.$router.push("reading");
@@ -89,7 +34,7 @@ export default {
 };
 </script>
 <style scoped>
->>> div.v-slide-group__prev.v-slide-group__prev--disabled{
+>>> div.v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
 </style>

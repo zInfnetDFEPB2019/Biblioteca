@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import router from '../../../../router/index'
+import router from '../../../../router/router'
 
 const state = {
     user: {

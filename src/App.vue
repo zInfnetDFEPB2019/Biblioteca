@@ -12,7 +12,7 @@
 import HeaderOutSystem from "./components/HeaderOutSystem";
 import Snackbar from "./components/Snackbar";
 
-import router from "./router/index";
+import router from "./router/router";
 
 export default {
   name: "App",
