@@ -4,9 +4,10 @@
   </v-btn>
 </template>
 <script>
+import preset from '../store/modules/ui/uiPreset'
 
 export default {
-  name: "Snackbar",
+  name: "ButtonExit",
   methods: {
     goToRoute() {
       const actualRouteName = this.$route.name;
@@ -24,7 +25,7 @@ export default {
       }
     },
     logout() {
-      this.$store.dispatch("auth/logout", null, { root: true });
+      this.$store.commit("ui/genericModal", { typeModal: "modalTwoOptions", attributes: preset.ModalLogoutConfirmation });
     },
     moveRoute(integer) {
       this.$route.go(integer);

@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="px-3">
     <v-col cols="12" sm="12" md="6" lg="4" xl="3">
       <CardContentApplication />
     </v-col>
@@ -26,3 +26,5 @@ export default {
   }
 }
 </script>
+<style scoped>
+</style>

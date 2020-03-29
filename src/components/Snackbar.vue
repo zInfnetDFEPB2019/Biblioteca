@@ -8,7 +8,7 @@ export default {
   name: "Snackbar",
   computed: {
       snackbarUI(){
-          return this.$store.state.ui.snackbar;
+          return this.$store.state.ui.generic.snackbar;
       }
   },
   methods: {
