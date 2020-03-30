@@ -21,7 +21,7 @@ export default {
   components: { HeaderOutSystem, Snackbar, ModalTwoOptions },
   computed: {
     SnackbarUI() {
-      return this.$store.state.ui.snackbar;
+      return this.$store.state.ui.generic.snackbar;
     }
   },
   data: () => ({

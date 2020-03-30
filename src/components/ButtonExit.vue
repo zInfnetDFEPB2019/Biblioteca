@@ -8,16 +8,20 @@ import preset from '../store/modules/ui/uiPreset'
 
 export default {
   name: "ButtonExit",
+  computed:{
+
+  },
   methods: {
     goToRoute() {
       const actualRouteName = this.$route.name;
       switch (actualRouteName) {
-        case "read":
+        case "readed":
         case "reading":
         case "wantread":
           this.logout();
           break;
-        case "config":
+        case "configuration":
+        case "search":
           this.moveRoute(-1);
           break;
         default:
@@ -28,7 +32,7 @@ export default {
       this.$store.commit("ui/genericModal", { typeModal: "modalTwoOptions", attributes: preset.ModalLogoutConfirmation });
     },
     moveRoute(integer) {
-      this.$route.go(integer);
+      this.$router.go(integer);
     }
   }
 };

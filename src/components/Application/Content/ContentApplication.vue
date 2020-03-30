@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs
+    <v-tabs v-if="this.$route.name != 'search'"
       background-color="cyan"
       color="white"
       slider-color="yellow"
@@ -12,6 +12,7 @@
       <v-tab key="2" value="2" :to="tabs[2].route">{{ tabs[2].title }}</v-tab>
     </v-tabs>
     <router-view></router-view>
+    
   </div>
 </template>
 <script>

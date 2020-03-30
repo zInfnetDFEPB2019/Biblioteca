@@ -12,6 +12,7 @@ import Configuration from '../views/Configuration.vue'
 import WantRead from '../views/WantRead.vue'
 import Read from '../views/Read.vue'
 import Reading from '../views/Reading.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,11 @@ const routes = [
         name: 'configuration',
         path: 'configuration',
         component: Configuration
+      },
+      {
+        name: 'search',
+        path: 'search',
+        component: Search
       },
     ]
   },

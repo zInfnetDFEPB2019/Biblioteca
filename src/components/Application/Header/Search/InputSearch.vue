@@ -16,7 +16,7 @@
     solo
   >
     <template slot="prepend-inner">
-      <v-icon color="cyan">search</v-icon>
+      <v-icon color="cyan" class="mr-2" @click="goToSearchPage">search</v-icon>
     </template>
   </v-autocomplete>
   <!-- <v-expand-transition>
@@ -65,7 +65,13 @@ export default {
         this.$store.commit("ui/getSearchData", this.model)
     }
   },
-  methods: {}
+  methods: {
+    goToSearchPage(){
+      if(this.search != "" && this.search != null){
+        this.$router.push({name: "search"})
+      }
+    }
+  }
 };
 </script>
 <style scoped>
