@@ -28,7 +28,7 @@ export default {
     //
   }),
   created() {
-    console.log(this.SnackbarUI.open); // eslint-disable-line
+    this.$store.dispatch("auth/verifyIfUserIsLogged");
     router.beforeEach((to, from, next) => {
       if (this.SnackbarUI.open) {
         this.$store.commit("ui/closeSnackbar");

@@ -9,6 +9,9 @@ const state = {
 }
 
 const getters = {
+    getUser: state => {
+        return state.user
+    }
 }
 
 const mutations = {
@@ -71,14 +74,17 @@ const actions = {
                 }
                 commit("ui/openSnackbar", snackbarProperties, { root: true })
             });
+    },
+    verifyIfUserIsLogged({ 
+        // dispatch,
+        commit 
+        }) {
+        firebase.auth().onAuthStateChanged(user => {
+            commit("updateUserInfo", user)
+            // dispatch("firestore/watchData", "clientes", { root: true })
+            // dispatch("firestore/watchData", "cuidadoras", { root: true })
+        })
     }
-    // verifyIfUserIsLogged({ dispatch, commit }) {
-    //     firebase.auth().onAuthStateChanged(user => {
-    //         commit("updateUserInfo", user)
-    //         dispatch("firestore/watchData", "clientes", { root: true })
-    //         dispatch("firestore/watchData", "cuidadoras", { root: true })
-    //     })
-    // }
 }
 
 function loginErrorInternalization(error) {

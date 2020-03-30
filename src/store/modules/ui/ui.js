@@ -55,7 +55,7 @@ const mutations = {
     getSearchData(state, object) {
         state.search.data = object;
     },
-    wipeSearchData(state) {
+    wipeModalSearchData(state) {
         state.search.data = null
     },
     genericModal(state, { typeModal, attributes }) {

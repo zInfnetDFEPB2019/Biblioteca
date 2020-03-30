@@ -1,26 +1,19 @@
 import * as firebase from 'firebase'
 
-const READED = 'readed'
-const READ = 'read'
-const WANTREAD = 'wantread'
+const READED = 'Readed'
+const READ = 'Reading'
+const WANTREAD = 'WantRead'
 
 
 const state = {
     ReadedBook: [],
     ReadBook: [],
     WantReadBook: [],
-    user: {
-        id: ''
-    }
 };
 
 const mutations = {
-    setUserID(state, id) {
-        state.user.id = id
-    },
-
-    setBook(state, route, book) {
-        switch (route) {
+    saveBook(state, {collection, book}) {
+        switch (collection) {
             case READED:
                 state.ReadedBook.push(book);
                 break;
@@ -35,36 +28,24 @@ const mutations = {
 };
 
 const actions = {
-    getBookData(context, route) {
-        // context.commit("setUserID", id)
+    watchData({ commit, rootGetters }, collection) {
+        console.log(collection) //eslint-disable-line
         firebase
-            .firestore()
-            .collection("Books")
-            .doc('plfTY56TkRSy2iPCpKKQclp5CuE3')
-            .collection(route)
+        .firestore()
+        .collection("Books")
+        .doc(rootGetters['auth/getUser'].id)
+        .collection(collection)
             .onSnapshot(data => {
                 var allData = [];
-                
                 data.forEach(document => {
                     let object = {}
-
                     for (let [property, valor] of Object.entries(document.data())) {
                         object[property] = valor
                     }
+                    object["id"] = document.id
                     allData.unshift(object);
                 });
-
-                switch (route) {
-                    case READED:
-                        context.state.ReadedBook = allData;
-                        break;
-                    case READ:
-                        context.state.ReadBook = allData;
-                        break;
-                    case WANTREAD:
-                        context.state.WantReadBook = allData;
-                        break;
-                }
+                commit("saveBook", { collection: collection, book: allData })
             })
     },
 };

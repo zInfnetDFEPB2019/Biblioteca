@@ -22,7 +22,6 @@ export default {
   },
   created() {
     console.log(this.$route.name + ' testeasdasd  ') //eslint-disable-line
-    this.$store.dispatch("books/getBookData", this.$route.name);
   }
 }
 </script>

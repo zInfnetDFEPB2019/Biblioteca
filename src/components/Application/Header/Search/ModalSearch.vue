@@ -63,7 +63,7 @@ export default {
   watch: {},
   methods: {
     closeModalSearch() {
-      this.$store.commit("ui/wipeSearchData");
+      this.$store.commit("ui/wipeModalSearchData");
     },
   }
 };

@@ -10,10 +10,15 @@ import HeaderApplication from "../components/Application/Header/HeaderApplicatio
 import ContentApplication from "../components/Application/Content/ContentApplication";
 
 export default {
-  
+  name:"Application",
   components: {
     HeaderApplication,
     ContentApplication,
+  },
+  created(){
+    this.$store.dispatch("books/watchData", "Readed");
+    this.$store.dispatch("books/watchData", "Reading");
+    this.$store.dispatch("books/watchData", "WantRead");
   }
 };
 </script>
