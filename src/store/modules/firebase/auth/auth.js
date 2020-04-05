@@ -43,10 +43,11 @@ const actions = {
                 commit("ui/openSnackbar", snackbarProperties, { root: true });
             })
     },
-    logout() {
+    logout({commit}) {
         firebase.auth().signOut()
             .then(() => {
                 router.push("/").catch(() => { })
+                commit("books/wipeAllBooksArrays", null,{ root: true })
             })
             .catch(error => {
                 console.log(error) // eslint-disable-line

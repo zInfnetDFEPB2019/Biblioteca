@@ -12,6 +12,11 @@ const state = {
 };
 
 const mutations = {
+    wipeAllBooksArrays(state){
+        state.ReadedBook = []
+        state.ReadBook = []
+        state.WantReadBook = []
+    },
     saveBook(state, {collection, book}) {
         switch (collection) {
             case READED:

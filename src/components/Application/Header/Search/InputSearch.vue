@@ -6,12 +6,12 @@
     :search-input.sync="search"
     hide-details="true"
     color="white"
-    hide-no-data
     hide-selected
     item-text="volumeInfo.title"
     item-value="volumeInfo.description"
     label="Public APIs"
     placeholder="Pesquise um livro"
+    :hide-no-data="hideNoResults"
     return-object
     solo
   >
@@ -19,16 +19,6 @@
       <v-icon color="cyan" class="mr-2" @click="goToSearchPage">search</v-icon>
     </template>
   </v-autocomplete>
-  <!-- <v-expand-transition>
-      <v-list v-if="model" class="red lighten-3">
-        <v-list-item v-for="(field, i) in fields" :key="i">
-          <v-list-item-content>
-            <v-list-item-title v-text="field.value"></v-list-item-title>
-            <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-  </v-expand-transition>-->
 </template>
 <script>
 export default {
@@ -39,7 +29,8 @@ export default {
       entries: [],
       isLoading: false,
       model: null,
-      search: null
+      search: null,
+      hideNoResults: true
     };
   },
   watch: {
@@ -50,11 +41,18 @@ export default {
       this.isLoading = true;
 
       // Lazily load input items
-      fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.search + "&maxResults=40&printType=books&projection=full")
+      fetch(
+        "https://www.googleapis.com/books/v1/volumes?q=" +
+          this.search +
+          "&maxResults=40&printType=books&projection=full"
+      )
         .then(res => res.json())
         .then(res => {
-          this.entries = res.items;
-          console.log(this.entries); //eslint-disable-line
+          if (this.$route.name == "search") {
+            this.$store.commit("ui/getSearchData", this.entries);
+          } else {
+            this.entries = res.items;
+          }
         })
         .catch(err => {
           console.log(err);
@@ -62,13 +60,21 @@ export default {
         .finally(() => (this.isLoading = false));
     },
     model() {
-        this.$store.commit("ui/getSearchData", this.model)
+      this.$store.commit("ui/getSelectedSearchData", this.model);
+    },
+    $route(to, from) {
+      console.log(from.name)//eslint-disable-line
+      if(from.name == "search"){
+        this.hideNoResults = false;
+        console.log("from.name")//eslint-disable-line
+      }
     }
   },
   methods: {
-    goToSearchPage(){
-      if(this.search != "" && this.search != null){
-        this.$router.push({name: "search"})
+    goToSearchPage() {
+      if (this.search != "" && this.search != null) {
+        this.$router.push({ name: "search" });
+        this.entries = [];
       }
     }
   }

@@ -2,6 +2,7 @@ let dispatchOrCommit = { name: null, parameter: null }
 
 const state = {
     search: {
+        selected: null,
         data: null
     },
     generic: {
@@ -55,8 +56,14 @@ const mutations = {
     getSearchData(state, object) {
         state.search.data = object;
     },
-    wipeModalSearchData(state) {
+    getSelectedSearchData(state, object) {
+        state.search.selected = object;
+    },
+    wipeSearchData(state) {
         state.search.data = null
+    },
+    wipeModalSelectedSearchData(state) {
+        state.search.selected = null
     },
     genericModal(state, { typeModal, attributes }) {
         switch (typeModal) {
