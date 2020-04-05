@@ -1,27 +1,27 @@
 <template>
   <div class="ma-4">
-    <v-card class="mb-4">
-      <v-card-title class="headline px-4 py-3 cyan white--text">Titulo do livro</v-card-title>
+    <v-card class="mb-4" v-for="(book, index) in SearchDataUI" :key="index">
+      <v-card-title class="headline px-4 py-3 cyan white--text">{{book.volumeInfo.title}}</v-card-title>
       <v-card-text class="px-3 pb-1 pt-3">
         <img
           class="mr-3 mb-3"
           align="left"
-          src="http://books.google.com/books/content?id=aDNQAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          :src="book.volumeInfo.imageLinks.thumbnail"
         />
         <br />
         <strong>Descrição:</strong>
-        <!-- {{ModalSearchUI.volumeInfo.description}} -->
+        {{book.volumeInfo.description}}
         <br />
         <strong>Autores:</strong>
-        <!-- {{ModalSearchUI.volumeInfo.authors.join(", ")}} -->
+        {{book.volumeInfo.authors}}
         <br />
         <strong>Número de páginas:</strong>
-        <!-- {{ModalSearchUI.volumeInfo.pageCount}} -->
+        {{book.volumeInfo.pageCount}}
         <br />
         <strong>Data de publicação:</strong>
-        <!-- {{ModalSearchUI.volumeInfo.publishedDate}} -->
+        {{book.volumeInfo.publishedDate}}
         <br />
-        <v-btn color="green white--text" target="_blank" block>Mais informações</v-btn>
+        <v-btn color="green white--text" target="_blank" :href="book.volumeInfo.infoLink" block>Mais informações</v-btn>
       </v-card-text>
       <v-card-actions style="display:flex;">
         <v-btn style="flex-grow:1;" color="cyan white--text" raised>Já li</v-btn>
@@ -35,10 +35,15 @@
 export default {
   name: "Search",
   components: {},
+  computed: {
+    SearchDataUI() {
+      return this.$store.getters["ui/getSearchData"];
+    }
+  }
 };
 </script>
 <style scoped>
-.defaultMargin{
-  padding: 12px!important;
+.defaultMargin {
+  padding: 12px !important;
 }
 </style>

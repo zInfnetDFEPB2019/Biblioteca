@@ -48,11 +48,8 @@ export default {
       )
         .then(res => res.json())
         .then(res => {
-          if (this.$route.name == "search") {
             this.$store.commit("ui/getSearchData", this.entries);
-          } else {
             this.entries = res.items;
-          }
         })
         .catch(err => {
           console.log(err);

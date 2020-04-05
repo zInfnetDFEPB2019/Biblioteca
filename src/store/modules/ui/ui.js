@@ -39,6 +39,9 @@ const state = {
 }
 
 const getters = {
+    getSearchData: state => {
+        return state.search.data
+    }
 }
 
 const mutations = {
