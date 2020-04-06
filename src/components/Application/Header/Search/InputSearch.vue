@@ -51,9 +51,6 @@ export default {
             this.$store.commit("ui/getSearchData", this.entries);
             this.entries = res.items;
         })
-        .catch(err => {
-          console.log(err);
-        })
         .finally(() => (this.isLoading = false));
     },
     model() {

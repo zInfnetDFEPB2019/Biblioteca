@@ -9,7 +9,7 @@
       alt="BiblioTech Logo"
       class="shrink mr-2"
       contain
-      src="https://d24fhjdx0edbmp.cloudfront.net/405e08ff-0727-4419-925a-ce41043b47a8_thumb.png"
+      src="https://media.discordapp.net/attachments/691021694063607879/696576055221288980/logo.png"
       transition="scale-transition"
       width="40"
     />
@@ -24,3 +24,9 @@
     </v-btn>
   </v-toolbar>
 </template>
+
+<style scoped>
+span {
+  color: white
+}
+</style>

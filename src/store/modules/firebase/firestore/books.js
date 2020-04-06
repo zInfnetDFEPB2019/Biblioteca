@@ -60,12 +60,6 @@ const actions = {
             .doc(rootGetters['auth/getUser'].id)
             .collection(collection)
             .add(object)
-            .then(data => {
-                console.log(data); // eslint-disable-line
-            })
-            .catch(error => {
-                console.log(error); // eslint-disable-line
-            });
     },
     deleteBook({ rootGetters }, { collection, id }) {
         firebase

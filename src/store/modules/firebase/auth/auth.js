@@ -49,9 +49,6 @@ const actions = {
                 router.push("/").catch(() => { })
                 commit("books/wipeAllBooksArrays", null, { root: true })
             })
-            .catch(error => {
-                console.log(error) // eslint-disable-line
-            })
     },
     signup({ commit }, { email, password }) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -65,7 +62,6 @@ const actions = {
                 commit("ui/openSnackbar", snackbarProperties, { root: true })
             })
             .catch(error => {
-                console.log(error) // eslint-disable-line
                 let errorMessage = signupErrorInternalization(error)
                 let snackbarProperties = {
                     color: "red",

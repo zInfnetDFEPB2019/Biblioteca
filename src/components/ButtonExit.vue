@@ -16,7 +16,6 @@ export default {
         case "Readed":
         case "Reading":
         case "WantRead":
-          console.log("ALO")//eslint-disable-line
           this.logout();
           break;
         case "configuration":
@@ -28,7 +27,6 @@ export default {
       }
     },
     logout() {
-      console.log("ALO")//eslint-disable-line
       this.$store.commit("ui/genericModal", { typeModal: "modalTwoOptions", attributes: preset.ModalLogoutConfirmation });
     },
     moveRoute(integer) {

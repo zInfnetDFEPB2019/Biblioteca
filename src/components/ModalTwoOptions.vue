@@ -24,7 +24,6 @@ export default {
       this.$store.commit("ui/genericModal", { typeModal: "modalTwoOptions", attributes: {} }, { root: true });
     },
     executeButtonActions(actionParameter){
-      console.log(actionParameter) // eslint-disable-line
       if(this.modalUI.executeActions){
         this.executeDispatch(actionParameter.dispatch.name, actionParameter.dispatch.parameter)
         this.executeCommit(actionParameter.commit.name, actionParameter.commit.parameter)
@@ -32,7 +31,6 @@ export default {
       this.closeModal()
     },
     executeDispatch(dispatchName, dispatchParameter){
-      console.log(dispatchName, dispatchParameter) // eslint-disable-line
       if(dispatchName != null){
         this.$store.dispatch(dispatchName, dispatchParameter);
       }
