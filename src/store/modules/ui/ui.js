@@ -5,6 +5,9 @@ const state = {
         selected: null,
         data: null
     },
+    books:{
+        modalInfoEdit: null,
+    },
     generic: {
         snackbar: {
             open: false,
@@ -41,7 +44,16 @@ const state = {
 const getters = {
     getSearchData: state => {
         return state.search.data
-    }
+    },
+    getSearchSelected: state => {
+        return state.search.selected
+    },
+    getSearch: state => {
+        return state.search.selected
+    },
+    getBooksModalInfoEdit: state => {
+        return state.books.modalInfoEdit
+    },
 }
 
 const mutations = {
@@ -62,11 +74,17 @@ const mutations = {
     getSelectedSearchData(state, object) {
         state.search.selected = object;
     },
+    getBooksModalInfoEdit(state, object) {
+        state.books.modalInfoEdit = object;
+    },
     wipeSearchData(state) {
         state.search.data = null
     },
     wipeModalSelectedSearchData(state) {
         state.search.selected = null
+    },
+    wipeBooksModalInfoEdit(state) {
+        state.books.modalInfoEdit = null
     },
     genericModal(state, { typeModal, attributes }) {
         switch (typeModal) {

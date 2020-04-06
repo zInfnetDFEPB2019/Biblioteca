@@ -60,10 +60,8 @@ export default {
       this.$store.commit("ui/getSelectedSearchData", this.model);
     },
     $route(to, from) {
-      console.log(from.name)//eslint-disable-line
       if(from.name == "search"){
         this.hideNoResults = false;
-        console.log("from.name")//eslint-disable-line
       }
     }
   },

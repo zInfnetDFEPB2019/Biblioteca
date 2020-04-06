@@ -12,13 +12,16 @@
       <v-tab key="2" value="2" :to="tabs[2].route">{{ tabs[2].title }}</v-tab>
     </v-tabs>
     <router-view></router-view>
-    
+    <ModalInfoEditBook/>
   </div>
 </template>
 <script>
-
+import ModalInfoEditBook from '../Content/ModalInfoEditBook'
 export default {
   name: "ContentApplication",
+  components:{
+    ModalInfoEditBook
+  },
   data: () => ({
     tabs: [
       { title: "Já li", route: "readed" },
@@ -26,9 +29,6 @@ export default {
       { title: "Quero Ler", route: "wantread" }
     ]
   }),
-  methods: {
-
-  },
   created() {
     this.$router.push("reading");
   }

@@ -8,16 +8,15 @@ import preset from '../store/modules/ui/uiPreset'
 
 export default {
   name: "ButtonExit",
-  computed:{
-
-  },
   methods: {
     goToRoute() {
       const actualRouteName = this.$route.name;
+      console
       switch (actualRouteName) {
-        case "readed":
-        case "reading":
-        case "wantread":
+        case "Readed":
+        case "Reading":
+        case "WantRead":
+          console.log("ALO")//eslint-disable-line
           this.logout();
           break;
         case "configuration":
@@ -29,6 +28,7 @@ export default {
       }
     },
     logout() {
+      console.log("ALO")//eslint-disable-line
       this.$store.commit("ui/genericModal", { typeModal: "modalTwoOptions", attributes: preset.ModalLogoutConfirmation });
     },
     moveRoute(integer) {

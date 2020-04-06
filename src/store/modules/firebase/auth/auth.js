@@ -43,11 +43,11 @@ const actions = {
                 commit("ui/openSnackbar", snackbarProperties, { root: true });
             })
     },
-    logout({commit}) {
+    logout({ commit }) {
         firebase.auth().signOut()
             .then(() => {
                 router.push("/").catch(() => { })
-                commit("books/wipeAllBooksArrays", null,{ root: true })
+                commit("books/wipeAllBooksArrays", null, { root: true })
             })
             .catch(error => {
                 console.log(error) // eslint-disable-line
@@ -76,14 +76,14 @@ const actions = {
                 commit("ui/openSnackbar", snackbarProperties, { root: true })
             });
     },
-    verifyIfUserIsLogged({ 
-        // dispatch,
-        commit 
-        }) {
+    verifyIfUserIsLogged({ dispatch, commit }) {
         firebase.auth().onAuthStateChanged(user => {
             commit("updateUserInfo", user)
-            // dispatch("firestore/watchData", "clientes", { root: true })
-            // dispatch("firestore/watchData", "cuidadoras", { root: true })
+            if (user != null) {
+                dispatch("books/watchData", "Readed", { root: true });
+                dispatch("books/watchData", "Reading", { root: true });
+                dispatch("books/watchData", "WantRead", { root: true });
+            }
         })
     }
 }

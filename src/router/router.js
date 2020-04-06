@@ -38,17 +38,17 @@ const routes = [
     component: Application,
     children: [
       {
-        name: 'readed',
+        name: 'Readed',
         path: 'readed',
         component: Read
       },
       {
-        name: 'reading',
+        name: 'Reading',
         path: 'reading',
         component: Reading
       },
       {
-        name: 'wantread',
+        name: 'WantRead',
         path: 'wantread',
         component: WantRead
       },

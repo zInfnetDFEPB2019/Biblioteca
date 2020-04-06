@@ -15,10 +15,5 @@ export default {
     HeaderApplication,
     ContentApplication,
   },
-  created(){
-    this.$store.dispatch("books/watchData", "Readed");
-    this.$store.dispatch("books/watchData", "Reading");
-    this.$store.dispatch("books/watchData", "WantRead");
-  }
 };
 </script>

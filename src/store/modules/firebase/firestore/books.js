@@ -6,40 +6,39 @@ const WANTREAD = 'WantRead'
 
 
 const state = {
-    ReadedBook: [],
-    ReadBook: [],
-    WantReadBook: [],
+    ReadedBook: null,
+    ReadBook: null,
+    WantReadBook: null,
 };
 
 const mutations = {
-    wipeAllBooksArrays(state){
-        state.ReadedBook = []
-        state.ReadBook = []
-        state.WantReadBook = []
+    wipeAllBooksArrays(state) {
+        state.ReadedBook = null
+        state.ReadBook = null
+        state.WantReadBook = null
     },
-    saveBook(state, {collection, book}) {
+    saveAllBooks(state, { collection, book }) {
         switch (collection) {
             case READED:
-                state.ReadedBook.push(book);
+                state.ReadedBook = book;
                 break;
             case READ:
-                state.ReadBook.push(book);
+                state.ReadBook = book;
                 break;
             case WANTREAD:
-                state.WantReadBook.push(book);
+                state.WantReadBook = book;
                 break;
         }
-    }
+    },
 };
 
 const actions = {
     watchData({ commit, rootGetters }, collection) {
-        console.log(collection) //eslint-disable-line
         firebase
-        .firestore()
-        .collection("Books")
-        .doc(rootGetters['auth/getUser'].id)
-        .collection(collection)
+            .firestore()
+            .collection("Books")
+            .doc(rootGetters['auth/getUser'].id)
+            .collection(collection)
             .onSnapshot(data => {
                 var allData = [];
                 data.forEach(document => {
@@ -48,17 +47,40 @@ const actions = {
                         object[property] = valor
                     }
                     object["id"] = document.id
+                    object["collection"] = collection
                     allData.unshift(object);
                 });
-                commit("saveBook", { collection: collection, book: allData })
+                commit("saveAllBooks", { collection: collection, book: allData })
             })
     },
+    addBook({ rootGetters }, { collection, object }) {
+        firebase
+            .firestore()
+            .collection("Books")
+            .doc(rootGetters['auth/getUser'].id)
+            .collection(collection)
+            .add(object)
+            .then(data => {
+                console.log(data); // eslint-disable-line
+            })
+            .catch(error => {
+                console.log(error); // eslint-disable-line
+            });
+    },
+    deleteBook({ rootGetters }, { collection, id }) {
+        firebase
+            .firestore()
+            .collection("Books")
+            .doc(rootGetters['auth/getUser'].id)
+            .collection(collection)
+            .doc(id)
+            .delete()
+    },
 };
-  
+
 export default {
     namespaced: true,
     state,
     actions,
     mutations
 };
-  
