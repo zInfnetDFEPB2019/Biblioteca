@@ -31,3 +31,6 @@ https://drive.google.com/file/d/1xjBKCchlxvYE-w5I8XIJPg2v0aT8CBf1/view
 
 Style Guide:
 https://imgur.com/xucEqTa
+
+Publicação no Git:
+https://antoniocastilloz.github.io/teste/
